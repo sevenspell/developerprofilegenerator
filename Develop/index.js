@@ -23,7 +23,7 @@ const userGithubData = [];
 const starredURL = [];
 
 //2. get data from Github based on username profile
-inquirer.prompt(questions[0])
+inquirer.prompt(questions)
 
     .then(function getUserData({ usernameV }) {
 
@@ -84,7 +84,7 @@ inquirer.prompt(questions[0])
 
     })
 
-    // inquirer.prompt(questions[1])
+    // inquirer.prompt(questions)
     // .then(function getFavColor({ colorV }){
     //     const favColor = `${colorV}`;
     //     console.log(favColor);
