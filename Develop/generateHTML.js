@@ -67,7 +67,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color].wrapperBackground};
+         background-color: ${colors[data.colorV].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -109,8 +109,8 @@ function generateHTML(data) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[data.color].headerBackground};
-         color: ${colors[data.color].headerColor};
+         background-color: ${colors[data.colorV].headerBackground};
+         color: ${colors[data.colorV].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -121,7 +121,7 @@ function generateHTML(data) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -95px;
-         border: 6px solid ${colors[data.color].photoBorderColor};
+         border: 6px solid ${colors[data.colorV].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -164,8 +164,8 @@ function generateHTML(data) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${colors[data.colorV].headerBackground};
+           color: ${colors[data.colorV].headerColor};
            margin: 20px;
          }
          
@@ -195,24 +195,24 @@ function generateHTML(data) {
                     <div class="container photo-header">
                         <div class="row justify-content-center">
                             <div class="col-md-6 offset-md-2 photo-header">
-                                <img src="${dataUserImage}" alt="profilepic"
+                                <img src="${data.githubData.avatar_url}" alt="profilepic"
                                     class="photo-header">
-                                <h2>Hi, I'm ${dataName}.</h2>
+                                <h2>Hi, I'm ${data.githubData.name}.</h2>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-sm-3 nav-link">
-                                <a href="${dataUserLocation}#" target="blank" class="nav-link links-nav"><i
-                                        class="fas fa-location-arrow">${dataUserLocation}</i>
+                                <a href="https://www.google.com/maps/place/${data.githubData.location}" target="blank" class="nav-link links-nav"><i
+                                        class="fas fa-location-arrow">${data.githubData.location}</i>
                                 </a>
                             </div>
                             <div class="col-sm-3 nav-link">
-                                <a href="${dataUserGithub}" target="blank" class="nav-link links-nav"><i
+                                <a href="${data.githubData.html_url}" target="blank" class="nav-link links-nav"><i
                                         class="fa fa-github">Github</i>
                                 </a>
                             </div>
                             <div class="col-sm-3 nav-link">
-                                <a href="${dataUserGithubBlog}#" target="blank" class="nav-link links-nav"><i
+                                <a href="${data.githubData.blog}" target="blank" class="nav-link links-nav"><i
                                         class="fas fa-rss">Blog</i></a>
                             </div>
                         </div>
@@ -222,31 +222,31 @@ function generateHTML(data) {
             <div class="container bio">
                 <div class="row justify-content-center">
                     <div class="col-sm-8 links-nav">
-                        <h6>${dataBioIntro}</h6>
+                        <h6>${data.githubData.bio}</h6>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col card links-nav">
                         Public Repositories
                         <br>
-                        ${dataNumPublicRepo}
+                        ${data.githubData.public_repos}
                     </div >
                     <div class="col card links-nav">
                         Followers
                         <br>
-                        ${dataNumFollowers}
+                        ${data.githubData.followers}
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col card links-nav">
                         Github Stars
                         <br>
-                        ${starCount}
+                        ${data.starCount}
                     </div>
                     <div class="col card links-nav">
                         Following
                         <br>
-                        ${dataNumFollowing}
+                        ${data.githubData.following}
                     </div>
                 </div>
             </div>
@@ -275,6 +275,6 @@ function generateHTML(data) {
 
 
     
-        module.exports = { colors, generateHTML };
+        module.exports = { colors: colors, generateHTML: generateHTML };
 
   
