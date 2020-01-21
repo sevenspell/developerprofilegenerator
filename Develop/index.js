@@ -14,21 +14,27 @@ const questions = [
         type: "list",
         message: "Choose your favourite color:",
         name: "colorV",
-        choices: ["Green", "Purple", "Pink", "Red", "Blue", "Yellow"]
+        choices: ["green", "purple", "pink", "red", "blue", "yellow"]
     }
-
 ];
 
 const userGithubData = [];
 const starredURL = [];
 
 //2. get data from Github based on username profile
+
+// function getData() {
+
 inquirer.prompt(questions)
 
-    .then(function getUserData({ usernameV }) {
+    .then(function getUserData({ usernameV, colorV }) {
+
+        // const userName = data.usernameV;
+        // const favColor = data.color;
 
         const queryURLGithubProfile = `https://api.github.com/users/${usernameV}`;
-        const queryURLGithubStarred = `https://api.github.com/users/${usernameV}/starred`;
+        const queryURLGithubStarred = `https://api.github.com/users/${usernameV}/repos`;
+
 
         axios.get(queryURLGithubProfile).then(function (res) {
             const responseData = res.data;
@@ -37,6 +43,12 @@ inquirer.prompt(questions)
             userGithubData.push(responseData);
 
             //4. create variables to store
+            const dataName = userGithubData[0].name;
+            console.log(dataName);
+
+            const dataBioIntro = userGithubData[0].bio;
+            console.log(dataBioIntro);
+
             //4a. number of public repos
             const dataNumPublicRepo = userGithubData[0].public_repos;
             console.log(dataNumPublicRepo);
@@ -61,6 +73,10 @@ inquirer.prompt(questions)
             const dataUserGithub = userGithubData[0].html_url;
             console.log(dataUserGithub);
 
+            //4h. user's github blog
+            const dataUserGithubBlog = userGithubData[0].blog;
+            console.log(dataUserGithubBlog);
+
 
         }).catch(function (error) {
             console.log(error);
@@ -70,35 +86,40 @@ inquirer.prompt(questions)
             const responseStarred = res.data;
 
             responseStarred.forEach(function (responseStarred) {
-                starredURL.push(responseStarred.html_url);
+
+                starredURL.push(responseStarred.stargazers_count);
+                
             })
             console.log(starredURL);
 
             //4c. number of github stars
-            const numOfStarredURL = starredURL.length
-            console.log(numOfStarredURL);
+
+            const starCount = starredURL.reduce((a, b) => a + b, 0);
+            console.log(starCount);
+
 
         }).catch(function (error) {
             console.log(error);
         });
 
-    })
+        // console.log(generateHTML.colors);
+        console.log(generateHTML.generateHTML);
 
-    // inquirer.prompt(questions)
-    // .then(function getFavColor({ colorV }){
-    //     const favColor = `${colorV}`;
-    //     console.log(favColor);
-    
-    
-    // }).catch(function (error) {
-    //     console.log(error);
-    // })
 
+    });
+
+
+// };
 
 
 //5. feed data into generateHTML() 
 
-// const htmlString = generateHTML();
+
+
+
+
+
+
 
 //6. generate html
 //7. convert html file to pdf
