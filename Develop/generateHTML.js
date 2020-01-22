@@ -1,38 +1,38 @@
 const colors = {
   green: {
-    wrapperBackground: "#7FFFD4",
-    headerBackground: "#20B2AA",
-    headerColor: "black",
-    photoBorderColor: "black"
+    wrapperBackground: "#ccff33",
+    headerBackground: "#006600",
+    headerColor: "white",
+    photoBorderColor: "#ff99cc"
   },
   purple: {
-    wrapperBackground: "#7B68EE",
-    headerBackground: "#483D8B",
+    wrapperBackground: "#cc99ff",
+    headerBackground: "#330080",
     headerColor: "white",
-    photoBorderColor: "#008080"
+    photoBorderColor: "#009973"
   },
   pink: {
-    wrapperBackground: "#FFC0CB",
-    headerBackground: "#FF69B4",
+    wrapperBackground: "#ff6699",
+    headerBackground: "#ffe6ff",
     headerColor: "black",
-    photoBorderColor: "#FEE24C"
+    photoBorderColor: "#ff00bf"
   },
   red: {
-    wrapperBackground: "#F08080",
-    headerBackground: "#CC3333",
+    wrapperBackground: "#ff9999",
+    headerBackground: "#b3003b",
     headerColor: "white",
     photoBorderColor: "white"
   },
   blue: {
-    wrapperBackground: "#4169E1",
-    headerBackground: "#1E90FF",
+    wrapperBackground: "#cce6ff",
+    headerBackground: "#004d99",
     headerColor: "white",
     photoBorderColor: "white"
 
   },
   yellow: {
-    wrapperBackground: "#FFD700",
-    headerBackground: "#FFFACD",
+    wrapperBackground: "#ffcc00",
+    headerBackground: "#fff0b3",
     headerColor: "black",
     photoBorderColor: "black"
   },
@@ -116,13 +116,13 @@ function generateHTML(data) {
          border-radius: 6px;
          }
          .photo-header img {
-         width: 250px;
-         height: 250px;
+         width: 300px;
+         height: 300px;
          border-radius: 50%;
          object-fit: cover;
          margin-top: -95px;
          border: 6px solid ${colors[data.colorV].photoBorderColor};
-         box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
+         box-shadow: #fcfcfc 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
          width: 100%;
@@ -134,8 +134,8 @@ function generateHTML(data) {
          .links-nav {
          width: 100%;
          text-align: center;
-         padding: 20px 0;
-         font-size: 1.1em;
+         padding: 30px 0;
+         font-size: 1.3em;  /* 1.1em */
          }
          .nav-link {
          display: inline-block;
@@ -157,8 +157,15 @@ function generateHTML(data) {
            display: flex;
            flex-wrap: wrap;
            justify-content: space-between;
-           margin-top: 20px;
-           margin-bottom: 20px;
+           margin-top: 10px;
+           margin-bottom: 10px;
+         }
+
+         .bio {
+           background-color: #f5f5ff;
+           margin-top: -20px;
+           padding-top: 20px;
+
          }
 
          .card {
@@ -167,11 +174,13 @@ function generateHTML(data) {
            background-color: ${colors[data.colorV].headerBackground};
            color: ${colors[data.colorV].headerColor};
            margin: 20px;
+           box-shadow: #fcfcfc 4px 1px 20px 4px;
          }
          
          .col {
          flex: 0.4;
          text-align: center;
+
          }
 
          a, a:hover {
@@ -201,19 +210,19 @@ function generateHTML(data) {
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-sm-3 nav-link">
+                            <div class="col nav-link">
                                 <a href="https://www.google.com/maps/place/${data.githubData.location}" target="blank" class="nav-link links-nav"><i
-                                        class="fas fa-location-arrow">${data.githubData.location}</i>
+                                        class="fas fa-location-arrow"> ${data.githubData.location}</i>
                                 </a>
                             </div>
-                            <div class="col-sm-3 nav-link">
+                            <div class="col nav-link">
                                 <a href="${data.githubData.html_url}" target="blank" class="nav-link links-nav"><i
-                                        class="fa fa-github">Github</i>
+                                        class="fa fa-github"> Github</i>
                                 </a>
                             </div>
-                            <div class="col-sm-3 nav-link">
+                            <div class="col nav-link">
                                 <a href="${data.githubData.blog}" target="blank" class="nav-link links-nav"><i
-                                        class="fas fa-rss">Blog</i></a>
+                                        class="fas fa-rss"> Blog</i></a>
                             </div>
                         </div>
                     </div>
@@ -251,9 +260,8 @@ function generateHTML(data) {
                 </div>
             </div>
             <div class="container wrapper">
-              <div class="row wrapper">
-                <div class="col wrapper"></div>
-              </div>
+            <div class="row wrapper">
+            </div>
             </div>
           </div>
         </section >

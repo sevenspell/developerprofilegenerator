@@ -56,19 +56,15 @@ inquirer.prompt(questions)
             const starCount = starredURL.reduce((a, b) => a + b, 0);
             console.log(starCount);
 
-            //5. feed data into generateHTML() 
+            //5. feed data into generateHTML() and generate
 
             const githubData = userGithubData[0];
-            // console.log(githubData.name + " line 60");
-            // console.log(generateHTML.generateHTML({colorV, githubData, starCount}) + " line 61");
 
             const htmlFile = generateHTML.generateHTML({ colorV, githubData, starCount });
 
-            // console.log(htmlFile + " line 67");
+            //6. convert html file to pdf
 
             function convertToPDF(htmlFile) {
-
-                // console.log(htmlFile + " line 75");
 
                 var conversion = convertFactory({
                     converterPath: convertFactory.converters.PDF
@@ -80,92 +76,22 @@ inquirer.prompt(questions)
                         return console.error(err);
                     }
 
-                    var filename = githubData.name.toLowerCase().split(' ').join('') + ".pdf"
-
-                    fs.writeFile(filename, htmlFile, function (err) {
-                        if (err) {
-                            return console.log(err);
-                        }
-                        console.log("success!");
-                    })
+                    var filename = githubData.login.toLowerCase().split(' ').join('') + ".pdf"
 
                     // console.log(result.numberOfPages);
                     // console.log(result.logs);
-                    // result.stream.pipe(fs.createWriteStream('./html.pdf`'));
-                    // conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-                });
+                    result.stream.pipe(fs.createWriteStream('./' + `${filename}`));
+                    conversion.kill(); 
 
+                    console.log("PDF file created");
+                });
 
             }
 
             convertToPDF(htmlFile);
 
-
-            // return htmlFile;
-
-
         }).catch(function (error) {
             console.log(error);
         })
-
         )
-        // .then(function convertToPDF() {
-
-        //     console.log(htmlFile + " line 75");
-
-
-        //     // var conversion = convertFactory({
-        //     //     converterPath: convertFactory.converters.PDF
-        //     // });
-
-        //     // conversion({ html: '<h1>Hello World</h1>' }, function (err, result) {
-        //     //     if (err) {
-        //     //         return console.error(err);
-        //     //     }
-
-        //     //     console.log(result.numberOfPages);
-        //     //     console.log(result.logs);
-        //     //     result.stream.pipe(fs.createWriteStream('/path/to/anywhere.pdf'));
-        //     //     conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-        //     // });
-
-
-        // }
-
-
-
-        // )
-
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//6. generate html
-//7. convert html file to pdf
-
-
-
-
-
-
-
-// function writeToFile(fileName, data) {
-
-// }
-
-// function init() {
-
-// }
-
-// init();
