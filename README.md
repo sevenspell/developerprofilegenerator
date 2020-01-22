@@ -1,5 +1,11 @@
 # week9-assignment - Developer Profile Generator
 
+GIF link
+https://github.com/sevenspell/week9-assignment/blob/master/week9homeworkx1000x5frames.gif
+
+PDF Sample File
+https://github.com/sevenspell/week9-assignment/blob/master/Develop/sevenspell.pdf
+
 ## Description 
 
 This project allows users to quickly generate different Github profiles based on a pre-designed html/css template via Node.js.
@@ -21,7 +27,7 @@ All users need to do is enter via Node.js, the Github username and their colour 
 
 See GIF for animated steps.
 
-(GIF link)
+https://github.com/sevenspell/week9-assignment/blob/master/week9homeworkx1000x5frames.gif
 
 
 ## Credits
