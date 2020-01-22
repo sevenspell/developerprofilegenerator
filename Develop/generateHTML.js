@@ -34,7 +34,7 @@ const colors = {
     wrapperBackground: "#ffcc00",
     headerBackground: "#fff0b3",
     headerColor: "black",
-    photoBorderColor: "black"
+    photoBorderColor: "#ff00ff"
   },
 
 };
