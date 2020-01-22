@@ -166,10 +166,10 @@ function generateHTML(data) {
 
          .bio {
            background-color: #f5f5ff;
-           margin-top: 10px;
+           margin-top: -20px;
            padding-top: 15px;
            padding-bottom: 0;
-           margin-bottom: 0;
+           margin-bottom: -20px;
 
          }
 
