@@ -49,12 +49,10 @@ inquirer.prompt(questions)
                 starredURL.push(responseStarred.stargazers_count);
 
             })
-            console.log(starredURL);
 
             //4c. number of github stars
 
             const starCount = starredURL.reduce((a, b) => a + b, 0);
-            console.log(starCount);
 
             //5. feed data into generateHTML() and generate
 
@@ -83,9 +81,8 @@ inquirer.prompt(questions)
                     result.stream.pipe(fs.createWriteStream('./' + `${filename}`));
                     conversion.kill(); 
 
-                    console.log("PDF file created");
+                    console.log("PDF file " + `${filename}` + " created");
                 });
-
             }
 
             convertToPDF(htmlFile);

@@ -100,8 +100,11 @@ function generateHTML(data) {
          font-size: 1.3em;
          }
          h6 {
-         font-size: 1.2em;
+         font-size: 1.15em;
          }
+         h7 {
+          font-size: 1.1em;
+          }
          .photo-header {
          position: relative;
          margin: 0 auto;
@@ -139,7 +142,7 @@ function generateHTML(data) {
          }
          .nav-link {
          display: inline-block;
-         margin: 5px 10px;
+         margin: 5px 5px 5px 5px;
          }
          .workExp-date {
          font-style: italic;
@@ -157,14 +160,16 @@ function generateHTML(data) {
            display: flex;
            flex-wrap: wrap;
            justify-content: space-between;
-           margin-top: 10px;
-           margin-bottom: 10px;
+           margin-top: 20px;
+           margin-bottom: 20px;
          }
 
          .bio {
            background-color: #f5f5ff;
-           margin-top: -20px;
-           padding-top: 20px;
+           margin-top: 10px;
+           padding-top: 15px;
+           padding-bottom: 0;
+           margin-bottom: 0;
 
          }
 
