@@ -1,5 +1,5 @@
 const generateHTML = require("./generateHTML");
-const convertHTMLToPDF = require("pdf-puppeteer");
+const convertFactory = require("electron-html-to");
 const axios = require("axios");
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -56,102 +56,93 @@ inquirer.prompt(questions)
             const starCount = starredURL.reduce((a, b) => a + b, 0);
             console.log(starCount);
 
+            //5. feed data into generateHTML() 
+
             const githubData = userGithubData[0];
-            console.log(githubData.name + " line 60");
+            // console.log(githubData.name + " line 60");
+            // console.log(generateHTML.generateHTML({colorV, githubData, starCount}) + " line 61");
 
-            console.log(generateHTML.generateHTML({colorV, githubData, starCount}) + " line 61");
+            const htmlFile = generateHTML.generateHTML({ colorV, githubData, starCount });
 
-            // return generateHTML({colorV, userGithubData});
+            // console.log(htmlFile + " line 67");
+
+            function convertToPDF(htmlFile) {
+
+                // console.log(htmlFile + " line 75");
+
+                var conversion = convertFactory({
+                    converterPath: convertFactory.converters.PDF
+
+                });
+
+                conversion({ html: htmlFile }, function (err, result) {
+                    if (err) {
+                        return console.error(err);
+                    }
+
+                    var filename = githubData.name.toLowerCase().split(' ').join('') + ".pdf"
+
+                    fs.writeFile(filename, htmlFile, function (err) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                        console.log("success!");
+                    })
+
+                    // console.log(result.numberOfPages);
+                    // console.log(result.logs);
+                    // result.stream.pipe(fs.createWriteStream('./html.pdf`'));
+                    // conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+                });
+
+
+            }
+
+            convertToPDF(htmlFile);
+
+
+            // return htmlFile;
+
 
         }).catch(function (error) {
             console.log(error);
         })
 
-        );
+        )
+        // .then(function convertToPDF() {
 
-        // axios.get(queryURLGithubStarred).then(function (res) {
-        //     const responseStarred = res.data;
-
-        //     responseStarred.forEach(function (responseStarred) {
-
-        //         starredURL.push(responseStarred.stargazers_count);
-
-        //     })
-        //     console.log(starredURL);
-
-        //     //4c. number of github stars
-
-        //     const starCount = starredURL.reduce((a, b) => a + b, 0);
-        //     console.log(starCount);
+        //     console.log(htmlFile + " line 75");
 
 
-        // }).catch(function (error) {
-        //     console.log(error);
-        // });
+        //     // var conversion = convertFactory({
+        //     //     converterPath: convertFactory.converters.PDF
+        //     // });
 
+        //     // conversion({ html: '<h1>Hello World</h1>' }, function (err, result) {
+        //     //     if (err) {
+        //     //         return console.error(err);
+        //     //     }
 
+        //     //     console.log(result.numberOfPages);
+        //     //     console.log(result.logs);
+        //     //     result.stream.pipe(fs.createWriteStream('/path/to/anywhere.pdf'));
+        //     //     conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+        //     // });
 
-        // function returnHTML({ colorV, userGithubData }) {
-        //     let favColor = `${colorV}`;
-        //     console.log(favColor + " line 106");
-        //     const htmlString = generateHTML.generateHTML;
-        //     console.log(userGithubData + " line 110");
-
-        //     // console.log(htmlString + " line 109");
-        //     // const dataName = userGithubData[0].name;
-        //     // console.log(dataName);
-
-        //     // console.log(htmlString(favColor, dataName, dataBioIntro) + " line 111");
 
         // }
 
-        // returnHTML({ colorV, userGithubData });
 
+
+        // )
 
     });
 
 
 
 
-            //4. create variables to store
-            // const dataName = userGithubData[0].name;
-            // console.log(dataName);
-
-            // const dataBioIntro = userGithubData[0].bio;
-            // console.log(dataBioIntro);
-
-            // //4a. number of public repos
-            // const dataNumPublicRepo = userGithubData[0].public_repos;
-            // console.log(dataNumPublicRepo);
-
-            // //4b. number of followers
-            // const dataNumFollowers = userGithubData[0].followers;
-            // console.log(dataNumFollowers);
-
-            // //4d. number of followings
-            // const dataNumFollowing = userGithubData[0].following;
-            // console.log(dataNumFollowing);
-
-            // //4e. user location
-            // const dataUserLocation = userGithubData[0].location;
-            // console.log(dataUserLocation);
-
-            // //4f. user bio image
-            // const dataUserImage = userGithubData[0].avatar_url;
-            // console.log(dataUserImage);
-
-            // //4g. user's github link
-            // const dataUserGithub = userGithubData[0].html_url;
-            // console.log(dataUserGithub);
-
-            // //4h. user's github blog
-            // const dataUserGithubBlog = userGithubData[0].blog;
-            // console.log(dataUserGithubBlog);
 
 
-
-
-//5. feed data into generateHTML() 
 
 
 
